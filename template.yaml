@@ -129,7 +129,26 @@ Resources:
                         }
     DependsOn: APIGatewayRole
 
-  
+  ApiGWLRoleArn:
+    Type: AWS::ApiGateway::Account
+    Properties: 
+      CloudWatchRoleArn: !GetAtt CloudWatchRole.Arn
+
+  # IAM Role for API Gateway to push logs to CloudWatch
+  CloudWatchRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            Action: 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+        Path: /
+        ManagedPolicyArns:
+          - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'     
+
   ApiGatewayLogGroup:
     Type: AWS::Logs::LogGroup
     UpdateReplacePolicy: Delete
