@@ -183,7 +183,7 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: order_created_publisher_one.lambda_handler
-      Runtime: python3.10
+      Runtime: python3.12
       Tracing: Active
       Architectures:
         - arm64
@@ -204,7 +204,7 @@ Resources:
     Properties:
       CodeUri: src/
       Handler: order_created_publisher_two.lambda_handler
-      Runtime: python3.10
+      Runtime: python3.12
       Tracing: Active
       Architectures:
         - arm64
